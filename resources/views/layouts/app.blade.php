@@ -16,12 +16,18 @@
     <script>
         $(document).ready(function() {
             $('#txt_search').on('input', function() {
-                let valor = $(this).val();
+                let val = $(this).val();
                 
-                let xhr = new XMLHttpRequest();
-
-                xhr.open('GET', '/?search='+valor, true);
-                xhr.send();
+                if(val.lengt >= 3){
+                    $.ajax({
+                        url: '/search',
+                        type: 'GET',
+                        data: { query: val },
+                        success: function(response) {
+                            
+                        }
+                    })
+                }
             });
         });
     </script>

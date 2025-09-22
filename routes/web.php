@@ -5,4 +5,3 @@ use App\Http\Controllers\SearchController;
 
 
 Route::get('/', [SearchController::class, 'search'])->name('search');
-Route::get('/search', [SearchController::class, 'search'])->name('search');

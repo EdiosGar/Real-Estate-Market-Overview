@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function search(Request $request){
-        $texto = $request->input('search');
+        $query = $request->query('query');
 
-        $query = $texto == '' ? $texto : "";
-
-        if($query != ""){
+        if($query){
 
             $curl = curl_init();
     
