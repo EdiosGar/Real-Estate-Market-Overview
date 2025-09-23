@@ -30,6 +30,7 @@
         $(document).ready(function () {
             $('#txt_search').on('input', function () {
                 let val = $(this).val();
+                const keyAPI = "bw8jVID1FKOPhVNVVVT5rSGTT9-feIpOjTJvaYYBXHw";
 
                 if (val.length >= 3) {
 
@@ -38,7 +39,7 @@
                         "method": "GET",
                         "timeout": 0,
                         "headers": {
-                            "Authorization": "bw8jVID1FKOPhVNVVVT5rSGTT9-feIpOjTJvaYYBXHw",
+                            "Authorization": + keyAPI,
                             "Accept": "application/json"
                         },
                     };
