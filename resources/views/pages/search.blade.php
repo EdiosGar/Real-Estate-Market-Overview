@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="conainer vh-100">
+    <div class="container vh-100">
         <div class="d-flex flex-column justify-content-lg-center align-items-center h-100">
             <h2 class="mt-5 mt-lg-2">Find Your Market</h2>
 
@@ -15,19 +15,6 @@
 
                 <div class="autocompleteList"></div>
             </div>
-
-
-            {{-- @if ($marks != null)
-            <div style="overflow-y: scroll;padding: 10px;">
-                @foreach ($marks->items as $mark)
-                    <div class="">
-                        {{ $mark->name }}
-                        <p class="fs-5">City: {{ $mark->name }}</p>
-                        <p class="fs-6">state: {{ $mark->state_abbreviation }}</p>
-                    </div>
-                @endforeach
-            </div>
-            @endif --}}
         </div>
     </div>
 @endsection

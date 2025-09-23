@@ -18,6 +18,14 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    {{-- Grafico --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        
+    </script>
+
+    {{-- Autocomplet --}}
     <script>
         $(document).ready(function () {
             $('#txt_search').on('input', function () {
@@ -30,22 +38,23 @@
                         "method": "GET",
                         "timeout": 0,
                         "headers": {
-                            "Authorization": "EphIk5y3KCwlBglN3t4lZWWciV6-wDh9ysil74NVD9s",
+                            "Authorization": "bw8jVID1FKOPhVNVVVT5rSGTT9-feIpOjTJvaYYBXHw",
                             "Accept": "application/json"
                         },
                     };
 
                     $.ajax(settings).done(function (response) {
                         let suggestions = response.items;
-                        
+
                         let autocompleteList = $('.autocompleteList');
 
                         if (suggestions && suggestions.length > 0) {
                             $.each(suggestions, function (index, item) {
-                                let listItem = $('<p style="cursor:pointer">').text(item.name);
+                                var html = "<p style='cursor:pointer'>";
+                                let listItem = $(html).text(item.name);
 
                                 listItem.on('click', function () {
-                                    window.location.href = 'select/'+item.parcl_id;
+                                    window.location.href = '/' + item.parcl_id;
                                 });
 
                                 autocompleteList.append(listItem);
@@ -58,9 +67,9 @@
                         }
 
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        console.error("Error al obtener sugerencias: ", textStatus, errorThrown);
+                        console.error(textStatus, errorThrown);
                     });
-                } else{
+                } else {
                     $('.autocompleteList').empty();
                     $('.autocompleteList').css();
                 }
