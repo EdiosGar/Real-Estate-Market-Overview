@@ -18,19 +18,12 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    {{-- Grafico --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        
-    </script>
-
-    {{-- Autocomplet --}}
-    <script>
+        const keyAPI = "Tkcmtt4P8ZEhjW_PQtklh2lOTYIie9eoMPgMRYGSPy8";
         $(document).ready(function () {
+            // Autocomplet
             $('#txt_search').on('input', function () {
                 let val = $(this).val();
-                const keyAPI = "bw8jVID1FKOPhVNVVVT5rSGTT9-feIpOjTJvaYYBXHw";
 
                 if (val.length >= 3) {
 
@@ -76,6 +69,88 @@
                 }
             });
         });
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script>
+
+        @if (isset($prices) && isset($markets) && isset($activity))
+        var id = $('#conteSelection').attr('parcl_id');
+
+        if(window.location.pathname == '/'+id){
+            const precioData = @json($prices);
+
+            const activityData = @json($activity);
+
+            var labelsP = []
+            var arrayDataP = []
+            var arrayDataNewListen = []
+            var arrayDataNewRental = []
+            precioData.items.forEach(element => {
+                labelsP.push(element.date)
+                arrayDataP.push(element.price.median.sales)
+            });
+            activityData.items.forEach(element => {
+                arrayDataNewListen.push(element.new_listings_for_sale)
+                arrayDataNewRental.push(element.new_rental_listings)
+            })
+
+    
+            const graphP = document.querySelector("#graphP");
+            const graphA = document.querySelector("#graphA");
+    
+            const dataP = {
+                labels: labelsP,
+                datasets: [{
+                    label: "Median Price",
+                    data: arrayDataP,
+                    backgroundColor: 'rgba(144, 69, 248, 0.8)'
+                }]
+            };
+
+            const dataSetSales = {
+                label: "Sale",
+                data: arrayDataP,
+                borderColor: 'rgba(69, 140, 248, 0.8)',
+                fill: false,
+                tension: 0.1
+            }
+
+            const dataSetNewListen = {
+                label: "New listings for sale",
+                data: arrayDataNewListen,
+                borderColor: 'rgba(248, 37, 37, 0.8)',
+                fill: false,
+                tension: 0.1
+            }
+
+            const dataSetNewRental = {
+                label: "New rental listings",
+                data: arrayDataNewRental,
+                borderColor: 'rgba(69, 248, 84, 0.8)',
+                fill: false,
+                tension: 0.1
+            }
+
+            const configP = {
+                type: 'line',
+                data: dataP,
+            };
+
+            const dataG2 = {
+                labels: labelsP,
+                datasets: [dataSetSales,dataSetNewListen,dataSetNewRental]
+            }
+
+            const configG2 = {
+                type: 'line',
+                data: dataG2,
+            }
+    
+            new Chart(graphP, configP);
+            new Chart(graphA, configG2);
+        }
+        @endif
     </script>
 </body>
 

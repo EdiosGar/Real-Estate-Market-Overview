@@ -10,8 +10,9 @@
                     <span class="input-group-text fs-6">
                         <i class="bi bi-search"></i>
                     </span>
-                    <input type="text" class="form-control fs-5" id="txt_search" placeholder="Search for a market..." autocomplete="off">
-                </div> 
+                    <input type="text" class="form-control fs-5" id="txt_search" placeholder="Search for a market..."
+                        autocomplete="off">
+                </div>
 
                 <div class="autocompleteList"></div>
             </div>
