@@ -39,7 +39,7 @@
                         "method": "GET",
                         "timeout": 0,
                         "headers": {
-                            "Authorization": + keyAPI,
+                            "Authorization": keyAPI,
                             "Accept": "application/json"
                         },
                     };
