@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search(Request $request){
-        $query = $request->query('query');
-
-        if($query){
+    public function select(string $parcl_id){
+        if($parcl_id){
 
             $curl = curl_init();
     
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.parcllabs.com/v1/search/markets?query=".$query,
+            CURLOPT_URL => "https://api.parcllabs.com/v1/search/markets?query=".$parcl_id,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -34,11 +32,14 @@ class SearchController extends Controller
     
             curl_close($curl);
     
-            return view('pages.search')
+            return view('pages.select')
                 ->with('marks', $data);
         } else {
-            $data = null;
-            return view('pages.search')->with('marks', $data);
+            
         }
+    }
+
+    public function search(){
+        return view('pages.search');
     }
 }
